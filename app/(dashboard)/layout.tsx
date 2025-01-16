@@ -47,7 +47,6 @@ const SIDEBAR_ITEMS: SidebarItem[] = [
   { name: "Inquiries", href: "/dashboard/inquiries", icon: MessageSquare },
   { name: "Email", href: "/dashboard/email", icon: Mail },
   { name: "Campaigns", href: "/dashboard/campaigns", icon: Megaphone },
-  { name: "Inventory", href: "/dashboard/inventory", icon: Package },
   { name: "Products", href: "/dashboard/products", icon: BoxesIcon },
   { name: "Sign out", href: "/login", icon: LogOut },
 ];
