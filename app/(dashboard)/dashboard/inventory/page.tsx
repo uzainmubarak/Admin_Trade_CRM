@@ -6,8 +6,18 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from 
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { PlusCircle } from "lucide-react";
+import { ColumnDef } from "@tanstack/react-table";
 
-const columns = [
+type InventoryItem = {
+  id: string;
+  productName: string;
+  sku: string;
+  quantity: number;
+  location: string;
+  lastUpdated: string;
+};
+
+const columns: ColumnDef<InventoryItem>[] = [
   { accessorKey: "productName", header: "Product Name" },
   { accessorKey: "sku", header: "SKU" },
   { accessorKey: "quantity", header: "Quantity" },
@@ -15,7 +25,7 @@ const columns = [
   { accessorKey: "lastUpdated", header: "Last Updated" }
 ];
 
-const data = [
+const data: InventoryItem[] = [
   {
     id: "1",
     productName: "Sample Product",
