@@ -45,7 +45,7 @@ export default function Login() {
             </div>
           </CardContent>
           <CardFooter className="flex flex-col space-y-4">
-            <Button type="submit" className="w-full">Login</Button>
+            <Button type="submit" className="w-full bg-[#37bfb1]">Login</Button>
             <p className="text-sm text-muted-foreground text-center">
               Don't have an account?{" "}
               <Link href="/sign-up" className="text-primary hover:underline">
