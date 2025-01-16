@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { usePathname } from "next/navigation";
+import { PiSignOut } from "react-icons/pi";
 import Link from "next/link";
 import { 
   Users, Store, ShoppingCart, MessageSquare, Mail, 
@@ -21,7 +22,7 @@ const sidebarItems = [
   { name: "Campaigns", href: "/dashboard/campaigns", icon: Megaphone },
   { name: "Inventory", href: "/dashboard/inventory", icon: Package },
   { name: "Products", href: "/dashboard/products", icon: BoxesIcon },
-  { name: "Sign out", href: "/sign-up", icon: BoxesIcon },
+  { name: "Sign out", href: "/login", icon: PiSignOut },
 ];
 
 export default function DashboardLayout({

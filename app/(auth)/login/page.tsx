@@ -26,11 +26,22 @@ export default function Login() {
           <CardContent className="space-y-4">
             <div className="space-y-2">
               <Label htmlFor="email">Email</Label>
-              <Input id="email" type="email" placeholder="john@example.com" required />
+              <Input 
+                id="email" 
+                type="email" 
+                placeholder="john@example.com" 
+                defaultValue="test@example.com"
+                required 
+              />
             </div>
             <div className="space-y-2">
               <Label htmlFor="password">Password</Label>
-              <Input id="password" type="password" required />
+              <Input 
+                id="password" 
+                type="password" 
+                defaultValue="password123"
+                required 
+              />
             </div>
           </CardContent>
           <CardFooter className="flex flex-col space-y-4">
