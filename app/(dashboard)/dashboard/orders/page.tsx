@@ -7,8 +7,18 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { PlusCircle } from "lucide-react";
+import { ColumnDef } from "@tanstack/react-table";
 
-const columns = [
+type Order = {
+  id: string;
+  orderNumber: string;
+  customer: string;
+  status: string;
+  total: string;
+  date: string;
+}
+
+const columns: ColumnDef<Order>[] = [
   { accessorKey: "orderNumber", header: "Order Number" },
   { accessorKey: "customer", header: "Customer" },
   { accessorKey: "status", header: "Status" },
@@ -16,7 +26,7 @@ const columns = [
   { accessorKey: "date", header: "Date" }
 ];
 
-const data = [
+const data: Order[] = [
   {
     id: "1",
     orderNumber: "ORD-001",

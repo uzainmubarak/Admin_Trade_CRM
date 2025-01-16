@@ -7,15 +7,24 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { PlusCircle } from "lucide-react";
+import { ColumnDef } from "@tanstack/react-table";
 
-const columns = [
+type Email = {
+  id: string,
+  subject: string,
+  recipient: string,
+  status: string,
+  sentDate: string
+}
+
+const columns: ColumnDef<Email>[] = [
   { accessorKey: "subject", header: "Subject" },
   { accessorKey: "recipient", header: "Recipient" },
   { accessorKey: "status", header: "Status" },
   { accessorKey: "sentDate", header: "Sent Date" }
 ];
 
-const data = [
+const data: Email[] = [
   {
     id: "1",
     subject: "Welcome Email",
