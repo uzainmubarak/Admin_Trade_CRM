@@ -2,11 +2,20 @@
 
 import { DataTable } from "@/components/data-table";
 import { Button } from "@/components/ui/button";
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+
 import { PlusCircle } from "lucide-react";
 import { ColumnDef } from "@tanstack/react-table";
+
+import { SellerForm } from "./components/SellerForm"
+import { ProductForm } from "./components/ProductForm";
 
 type Buyer = {
   id: string;
@@ -36,7 +45,7 @@ const data: Buyer[] = [
   },
 ];
 
-export default function BuyersPage() {
+export default function SellerPage() {
   return (
     <div className="space-y-6">
       <div className="flex justify-between items-center">
@@ -50,31 +59,20 @@ export default function BuyersPage() {
           </DialogTrigger>
           <DialogContent className="sm:max-w-[425px]">
             <DialogHeader>
-              <DialogTitle>Add New Seller</DialogTitle>
+              <DialogTitle>Add New Entry</DialogTitle>
             </DialogHeader>
-            <form className="grid gap-4 py-4">
-              <div className="grid gap-2">
-                <Label htmlFor="name">Name</Label>
-                <Input id="name" required />
-              </div>
-              <div className="grid gap-2">
-                <Label htmlFor="email">Email</Label>
-                <Input id="email" type="email" required />
-              </div>
-              <div className="grid gap-2">
-                <Label htmlFor="phone">Phone</Label>
-                <Input id="phone" type="tel" required />
-              </div>
-              <div className="grid gap-2">
-                <Label htmlFor="address">Address</Label>
-                <Input id="address" required />
-              </div>
-              <div className="grid gap-2">
-                <Label htmlFor="country">Country</Label>
-                <Input id="country" required />
-              </div>
-              <Button type="submit">Save Seller</Button>
-            </form>
+            <Tabs defaultValue="seller" className="w-full">
+              <TabsList className="grid w-full grid-cols-2">
+                <TabsTrigger value="seller">Seller</TabsTrigger>
+                <TabsTrigger value="product">Product</TabsTrigger>
+              </TabsList>
+              <TabsContent value="seller">
+                <SellerForm />
+              </TabsContent>
+              <TabsContent value="product">
+                <ProductForm />
+              </TabsContent>
+            </Tabs>
           </DialogContent>
         </Dialog>
       </div>

@@ -120,7 +120,7 @@ const Sidebar: React.FC<{ isCollapsed: boolean; onToggleCollapse: () => void }> 
       </div>
       
       <ScrollArea className="flex-1 px-3">
-        <nav className="py-4">
+        <nav className="flex flex-col gap-1 py-4">
           {SIDEBAR_ITEMS.map((item) => (
             <SidebarItem
               key={item.href}
