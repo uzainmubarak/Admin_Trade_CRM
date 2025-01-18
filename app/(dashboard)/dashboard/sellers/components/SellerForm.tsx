@@ -53,7 +53,7 @@ export function SellerForm() {
           </Select>
         </div>
       </div>
-      <Button type="submit">Save Seller</Button>
+      <Button className="w-fit" type="submit">Save Seller</Button>
     </form>
   )
 }
