@@ -13,8 +13,8 @@ const formFields = [
 
 export function ProductForm() {
   return (
-    <form className="grid gap-4 py-4">
-      <div className="flex flex-col gap-4 overflow-y-auto max-h-[400px] px-1 pb-3">
+    <form className="grid gap-6">
+      <div className="grid gap-4">
         {formFields.map((field) => (
           <div key={field.id} className="grid gap-2">
             <Label htmlFor={field.id}>{field.label}</Label>
