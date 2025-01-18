@@ -43,7 +43,7 @@ const SIDEBAR_ITEMS: SidebarItem[] = [
   { name: "Dashboard", href: "/dashboard", icon: LayoutDashboard },
   { name: "Sellers", href: "/dashboard/sellers", icon: Store },
   { name: "Buyers", href: "/dashboard/buyers", icon: Users },
-  { name: "Orders", href: "/dashboard/orders", icon: ShoppingCart },
+  { name: "RFQ", href: "/dashboard/rfq", icon: ShoppingCart },
   { name: "Inquiries", href: "/dashboard/inquiries", icon: MessageSquare },
   { name: "Email", href: "/dashboard/email", icon: Mail },
   { name: "Campaigns", href: "/dashboard/campaigns", icon: Megaphone },
