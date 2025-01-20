@@ -114,7 +114,7 @@ export function ProductForm() {
           />
         </div>
       </div>
-      <Button type="submit">Save Product</Button>
+      <Button className="w-fit" type="submit">Save Product</Button>
     </form>
   )
 }
