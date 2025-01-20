@@ -4,7 +4,7 @@ import { Users, ShoppingCart, Package, MessageSquare } from "lucide-react";
 export default function Dashboard() {
   return (
     <div className="space-y-6">
-      <h1 className="text-3xl font-bold">Dashboard Overview</h1>
+      <h1 className="sm:text-3xl text-2xl font-bold text-center lg:text-left">Dashboard Overview</h1>
       
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
         <Card>

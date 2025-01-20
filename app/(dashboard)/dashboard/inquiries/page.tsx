@@ -40,7 +40,7 @@ export default function BuyersPage() {
   return (
     <div className="space-y-6">
       <div className="flex justify-between items-center">
-        <h1 className="text-3xl font-bold">Inquiries</h1>
+        <h1 className="sm:text-3xl text-2xl font-bold ml-14 lg:ml-0">Inquiries</h1>
       </div>
       <DataTable columns={columns} data={data} />
     </div>

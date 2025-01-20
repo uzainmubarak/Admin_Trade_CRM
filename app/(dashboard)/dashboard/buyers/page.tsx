@@ -40,7 +40,7 @@ export default function BuyersPage() {
   return (
     <div className="space-y-6">
       <div className="flex justify-between items-center">
-        <h1 className="text-3xl font-bold">Buyers</h1>
+        <h1 className="text-3xl font-bold ml-14 sm:ml-0">Buyers</h1>
         <Dialog>
           <DialogTrigger asChild>
             <Button>

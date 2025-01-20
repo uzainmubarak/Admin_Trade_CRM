@@ -38,7 +38,7 @@ export default function EmailPage() {
   return (
     <div className="space-y-6">
       <div className="flex justify-between items-center">
-        <h1 className="text-3xl font-bold">Email</h1>
+        <h1 className="sm:text-3xl text-2xl font-bold ml-14 lg:ml-0">Email</h1>
         <Dialog>
           <DialogTrigger asChild>
             <Button>
