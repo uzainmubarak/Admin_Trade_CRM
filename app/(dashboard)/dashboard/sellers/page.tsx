@@ -38,7 +38,7 @@ export default function SellerPage() {
   return (
     <div className="space-y-6">
       <div className="flex justify-between items-center">
-        <h1 className="text-3xl font-bold">Seller</h1>
+        <h1 className="text-3xl font-bold ml-14 sm:ml-0">Seller</h1>
         <Link href="/dashboard/sellers/new">
           <Button>
             <PlusCircle className="mr-2 h-4 w-4" />
