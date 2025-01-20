@@ -16,15 +16,24 @@ const SellerDetailClient: React.FC<Props> = ({ params }) => {
 
   return (
     <div className="container mx-auto py-10">
-      <h1 className="text-3xl font-bold mb-6">
-        {isNewSeller ? "Add New Seller" : "Edit Seller"}
-      </h1>
+      <h1 className="text-3xl font-bold mb-6">{isNewSeller ? "Add New Seller" : "Edit Seller"}</h1>
       <Tabs defaultValue="seller" className="w-full">
-        <TabsList className="grid w-full max-w-md grid-cols-4">
-          <TabsTrigger value="seller">Seller</TabsTrigger>
-          <TabsTrigger value="product">Product</TabsTrigger>
-          <TabsTrigger value="specifications">Specifications</TabsTrigger>
-          <TabsTrigger value="details">Details</TabsTrigger>
+        <TabsList className="flex w-full max-w-md overflow-x-auto">
+          <TabsTrigger value="seller" className="flex-1 min-w-[80px]">
+            <span className="hidden sm:inline">Seller</span>
+            <span className="sm:hidden">Sell</span>
+          </TabsTrigger>
+          <TabsTrigger value="product" className="flex-1 min-w-[80px]">
+            <span className="hidden sm:inline">Product</span>
+            <span className="sm:hidden">Prod</span>
+          </TabsTrigger>
+          <TabsTrigger value="specifications" className="flex-1 min-w-[80px]">
+            <span className="hidden sm:inline">Specifications</span>
+            <span className="sm:hidden">Specs</span>
+          </TabsTrigger>
+          <TabsTrigger value="details" className="flex-1 min-w-[80px]">
+            Details
+          </TabsTrigger>
         </TabsList>
         <div className="mt-6">
           <TabsContent value="seller">
