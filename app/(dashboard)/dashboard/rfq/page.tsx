@@ -9,27 +9,27 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { PlusCircle } from "lucide-react";
 import { ColumnDef } from "@tanstack/react-table";
 
-type Order = {
+type Quotation = {
   id: string;
-  orderNumber: string;
+  quotationNumber: string;
   customer: string;
   status: string;
   total: string;
   date: string;
 }
 
-const columns: ColumnDef<Order>[] = [
-  { accessorKey: "orderNumber", header: "Order Number" },
+const columns: ColumnDef<Quotation>[] = [
+  { accessorKey: "quotationNumber", header: "Quotation Number" },
   { accessorKey: "customer", header: "Customer" },
   { accessorKey: "status", header: "Status" },
   { accessorKey: "total", header: "Total" },
   { accessorKey: "date", header: "Date" }
 ];
 
-const data: Order[] = [
+const data: Quotation[] = [
   {
     id: "1",
-    orderNumber: "ORD-001",
+    quotationNumber: "QUO-001",
     customer: "John Doe",
     status: "Processing",
     total: "$299.99",
@@ -37,11 +37,11 @@ const data: Order[] = [
   }
 ];
 
-export default function OrdersPage() {
+export default function RFQ() {
   return (
     <div className="space-y-6">
       <div className="flex justify-between items-center">
-        <h1 className="sm:text-3xl text-2xl font-bold ml-14 sm:ml-0">Orders</h1>
+        <h1 className="sm:text-3xl text-2xl font-bold ml-14 sm:ml-0">Quotations</h1>
       </div>
       <DataTable columns={columns} data={data} />
     </div>
