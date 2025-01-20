@@ -48,6 +48,7 @@ const SIDEBAR_ITEMS: SidebarItem[] = [
   { name: "Email", href: "/dashboard/email", icon: Mail },
   { name: "Campaigns", href: "/dashboard/campaigns", icon: Megaphone },
   { name: "Products", href: "/dashboard/products", icon: BoxesIcon },
+  { name: "Expo Events", href: "/dashboard/expo-events", icon: BoxesIcon },
   { name: "Sign out", href: "/login", icon: LogOut },
 ];
 
