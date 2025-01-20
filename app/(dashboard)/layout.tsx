@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { ScrollArea } from "@/components/ui/scroll-area";
+import { MdEventSeat } from "react-icons/md";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
@@ -48,7 +49,7 @@ const SIDEBAR_ITEMS: SidebarItem[] = [
   { name: "Email", href: "/dashboard/email", icon: Mail },
   { name: "Campaigns", href: "/dashboard/campaigns", icon: Megaphone },
   { name: "Products", href: "/dashboard/products", icon: BoxesIcon },
-  { name: "Expo Events", href: "/dashboard/expo-events", icon: BoxesIcon },
+  { name: "Expo Events", href: "/dashboard/expo-events", icon: MdEventSeat },
   { name: "Sign out", href: "/login", icon: LogOut },
 ];
 
