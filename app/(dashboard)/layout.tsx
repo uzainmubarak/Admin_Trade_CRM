@@ -115,9 +115,11 @@ const Sidebar: React.FC<{ isCollapsed: boolean; onToggleCollapse: () => void }> 
         "flex items-center p-4 border-b border-white/10",
         isCollapsed ? "justify-center" : "justify-between"
       )}>
+        <Link href={'/dashboard'}>
         {!isCollapsed && (
           <h2 className="text-xl font-bold text-white truncate">Admin Panel</h2>
-        )}
+          )}
+          </Link>
         <Button
           variant="ghost"
           size="sm"
