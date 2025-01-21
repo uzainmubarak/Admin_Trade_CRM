@@ -34,7 +34,7 @@ interface SidebarItemProps {
   item: SidebarItem;
   isActive: boolean;
   isCollapsed: boolean;
-  onclick: boolean;
+  onclick?: ()=>void;
 }
 
 interface DashboardLayoutProps {
@@ -56,12 +56,12 @@ const SIDEBAR_ITEMS: SidebarItem[] = [
 ];
 
 // Component for individual sidebar items
-const SidebarItem: React.FC<SidebarItemProps> = ({ item, isActive, isCollapsed, onClick }) => {
+const SidebarItem: React.FC<SidebarItemProps> = ({ item, isActive, isCollapsed, onclick }) => {
   const Icon = item.icon;
   const isLastItem = item.name === "Sign out";
 
   return (
-    <Link href={item.href} onClick={onClick}>
+    <Link href={item.href} onClick={onclick}>
       <span
         className={cn(
           "group relative flex items-center rounded-lg px-4 py-3 transition-all duration-200",
