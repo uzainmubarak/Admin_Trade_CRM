@@ -34,7 +34,7 @@ interface SidebarItemProps {
   item: SidebarItem;
   isActive: boolean;
   isCollapsed: boolean;
-  onclick?: ()=>void;
+  onClick?: () => void;  // Fixed capitalization
 }
 
 interface DashboardLayoutProps {
@@ -56,19 +56,26 @@ const SIDEBAR_ITEMS: SidebarItem[] = [
 ];
 
 // Component for individual sidebar items
-const SidebarItem: React.FC<SidebarItemProps> = ({ item, isActive, isCollapsed, onclick }) => {
+const SidebarItem: React.FC<SidebarItemProps> = ({ item, isActive, isCollapsed, onClick }) => {  // Fixed capitalization
   const Icon = item.icon;
   const isLastItem = item.name === "Sign out";
 
+  const handleClick = (e: React.MouseEvent) => {
+    // Call the onClick handler if provided
+    if (onClick) {
+      onClick();
+    }
+  };
+
   return (
-    <Link href={item.href} onClick={onclick}>
+    <Link href={item.href} onClick={handleClick}>
       <span
         className={cn(
           "group relative flex items-center rounded-lg px-4 py-3 transition-all duration-200",
           "hover:bg-white/10",
           isActive ? "bg-white/10 text-white" : "text-gray-200 hover:text-white",
           isCollapsed ? "justify-center" : "justify-start",
-          isLastItem ? "mt-0" : "mt-0"  // Add extra margin for last item
+          isLastItem ? "mt-0" : "mt-0"
         )}
       >
         <Icon className={cn(
@@ -80,7 +87,6 @@ const SidebarItem: React.FC<SidebarItemProps> = ({ item, isActive, isCollapsed, 
           <span className={`font-medium ${fonts.montserrat} truncate`}>{item.name}</span>
         )}
         
-        {/* Tooltip for collapsed state */}
         {isCollapsed && (
           <div className="absolute left-full ml-6 hidden rounded-md bg-gray-900 px-3 py-2 text-sm 
                         text-white opacity-0 transition-all group-hover:opacity-100 group-hover:block">
@@ -170,7 +176,7 @@ const MobileSidebar: React.FC = () => {
                 item={item}
                 isActive={pathname === item.href}
                 isCollapsed={false}
-                onClick={handleItemClick} // Pass the handler here
+                onClick={handleItemClick}  // This will now work with the properly cased prop
               />
             ))}
           </nav>
@@ -179,7 +185,6 @@ const MobileSidebar: React.FC = () => {
     </Sheet>
   );
 };
-
 
 // Main layout component
 const DashboardLayout: React.FC<DashboardLayoutProps> = ({ children }) => {
