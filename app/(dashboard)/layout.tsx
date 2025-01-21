@@ -34,6 +34,7 @@ interface SidebarItemProps {
   item: SidebarItem;
   isActive: boolean;
   isCollapsed: boolean;
+  onclick: boolean;
 }
 
 interface DashboardLayoutProps {
@@ -55,12 +56,12 @@ const SIDEBAR_ITEMS: SidebarItem[] = [
 ];
 
 // Component for individual sidebar items
-const SidebarItem: React.FC<SidebarItemProps> = ({ item, isActive, isCollapsed }) => {
+const SidebarItem: React.FC<SidebarItemProps> = ({ item, isActive, isCollapsed, onClick }) => {
   const Icon = item.icon;
   const isLastItem = item.name === "Sign out";
 
   return (
-    <Link href={item.href}>
+    <Link href={item.href} onClick={onClick}>
       <span
         className={cn(
           "group relative flex items-center rounded-lg px-4 py-3 transition-all duration-200",
@@ -141,9 +142,14 @@ const Sidebar: React.FC<{ isCollapsed: boolean; onToggleCollapse: () => void }> 
 // Mobile sidebar component
 const MobileSidebar: React.FC = () => {
   const pathname = usePathname();
+  const [isSheetOpen, setIsSheetOpen] = useState(false);
+
+  const handleItemClick = () => {
+    setIsSheetOpen(false); // Close the sidebar when an item is clicked
+  };
 
   return (
-    <Sheet>
+    <Sheet open={isSheetOpen} onOpenChange={setIsSheetOpen}>
       <SheetTrigger asChild>
         <Button variant="ghost" className="lg:hidden p-2 absolute top-4 left-4">
           <Menu className="h-6 w-6" />
@@ -164,6 +170,7 @@ const MobileSidebar: React.FC = () => {
                 item={item}
                 isActive={pathname === item.href}
                 isCollapsed={false}
+                onClick={handleItemClick} // Pass the handler here
               />
             ))}
           </nav>
@@ -172,6 +179,7 @@ const MobileSidebar: React.FC = () => {
     </Sheet>
   );
 };
+
 
 // Main layout component
 const DashboardLayout: React.FC<DashboardLayoutProps> = ({ children }) => {
