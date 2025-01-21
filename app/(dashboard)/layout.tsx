@@ -15,7 +15,7 @@ import {
   MessageSquare,
   Mail,
   Megaphone,
-  Package,
+  User,
   BoxesIcon,
   Menu,
   LayoutDashboard,
@@ -52,6 +52,7 @@ const SIDEBAR_ITEMS: SidebarItem[] = [
   { name: "Campaigns", href: "/dashboard/campaigns", icon: Megaphone },
   { name: "Products", href: "/dashboard/products", icon: BoxesIcon },
   { name: "Expo Events", href: "/dashboard/expo-events", icon: MdEventSeat },
+  { name: "Users", href: "/dashboard/users", icon: User },
   { name: "Sign out", href: "/login", icon: LogOut },
 ];
 

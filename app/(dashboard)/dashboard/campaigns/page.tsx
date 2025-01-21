@@ -31,6 +31,13 @@ const initialData = [
   }
 ];
 
+const emailTemplates = [
+  { id: "1", name: "Welcome Email" },
+  { id: "2", name: "Summer Promotion" },
+  { id: "3", name: "Holiday Special" },
+  { id: "4", name: "Flash Sale Alert" },
+]
+
 export default function CampaignsPage() {
   const [campaignData, setCampaignData] = useState(initialData);
   const [open, setOpen] = useState(false);
@@ -39,23 +46,25 @@ export default function CampaignsPage() {
     type: "",
     description: "",
     startDate: "",
-    endDate: ""
-  });
+    endDate: "",
+    emailTemplate: "",
+    audience: "",
+  })
 
-  const handleInputChange = (e: { target: { name: any; value: any; }; }) => {
-    const { name, value } = e.target;
-    setFormData(prev => ({
+  const handleInputChange = (e: { target: { name: any; value: any } }) => {
+    const { name, value } = e.target
+    setFormData((prev) => ({
       ...prev,
-      [name]: value
-    }));
-  };
+      [name]: value,
+    }))
+  }
 
-  const handleSelectChange = (value: any) => {
-    setFormData(prev => ({
+  const handleSelectChange = (name: string, value: any) => {
+    setFormData((prev) => ({
       ...prev,
-      type: value
-    }));
-  };
+      [name]: value,
+    }))
+  }
 
   const resetForm = () => {
     setFormData({
@@ -63,8 +72,10 @@ export default function CampaignsPage() {
       type: "",
       description: "",
       startDate: "",
-      endDate: ""
-    });
+      endDate: "",
+      emailTemplate: "",
+      audience: "",
+    })
   };
 
   const handleSubmit = (e: { preventDefault: () => void; }) => {
@@ -119,7 +130,7 @@ export default function CampaignsPage() {
                 <Label htmlFor="type">Campaign Type</Label>
                 <Select 
                   value={formData.type} 
-                  onValueChange={handleSelectChange}
+                  onValueChange={value => handleSelectChange("type", value)}
                   required
                 >
                   <SelectTrigger>
@@ -131,6 +142,41 @@ export default function CampaignsPage() {
                     <SelectItem value="Seasonal">Seasonal</SelectItem>
                     <SelectItem value="Flash Sale">Flash Sale</SelectItem>
                     <SelectItem value="Holiday">Holiday</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+
+              <div className="grid gap-2">
+                <Label htmlFor="emailTemplate">Email Template</Label>
+                <Select
+                  value={formData.emailTemplate}
+                  onValueChange={(value) => handleSelectChange("emailTemplate", value)}
+                  required
+                >
+                  <SelectTrigger>
+                    <SelectValue placeholder="Select email template" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {emailTemplates.map((template) => (
+                      <SelectItem key={template.id} value={template.id}>
+                        {template.name}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+              </div>
+
+              <div className="grid gap-2">
+                <Label htmlFor="recipient-type">Recipient Type</Label>
+                <Select>
+                  <SelectTrigger id="recipient-type">
+                    <SelectValue placeholder="Select recipient type" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="all">All</SelectItem>
+                    <SelectItem value="seller">Seller</SelectItem>
+                    <SelectItem value="buyers">Buyers</SelectItem>
+                    <SelectItem value="potential-customers">Potential Customers</SelectItem>
                   </SelectContent>
                 </Select>
               </div>
