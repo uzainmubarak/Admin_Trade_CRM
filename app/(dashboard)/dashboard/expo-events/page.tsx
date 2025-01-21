@@ -16,7 +16,6 @@ import { fonts } from "@/components/ui/fonts";
 
 export default function ModernQRPage() {
   const [showScanner, setShowScanner] = useState(false);
-  const [error, setError] = useState("");
   const [message, setMessage] = useState("");
   const [formData, setFormData] = useState({
     name: "",
@@ -29,8 +28,18 @@ export default function ModernQRPage() {
     if (showScanner) {
       const scanner = new Html5QrcodeScanner(
         "qr-reader",
-        { fps: 10, qrbox: { width: 250, height: 250 } },
-        false
+        { 
+          fps: 10, 
+          qrbox: { width: 250, height: 250 },
+          showTorchButtonIfSupported: false,
+          showZoomSliderIfSupported: false,
+          defaultZoomValueIfSupported: 2,
+          aspectRatio: 1.0,
+          videoConstraints: {
+            facingMode: { ideal: "environment" }
+          }
+        },
+        /* verbose= */ false
       );
 
       scanner.render(
@@ -41,13 +50,12 @@ export default function ModernQRPage() {
             scanner.clear();
             setShowScanner(false);
             setMessage("QR Code scanned successfully!");
-          } catch {
-            setError("Invalid QR code");
+          } catch (error) {
+            console.error("Failed to parse QR code data:", error);
           }
         },
-        (err) => {
-          console.error(err);
-          setError("QR Code scanning failed.");
+        (error) => {
+          console.error("QR Scan error:", error);
         }
       );
 
@@ -57,23 +65,16 @@ export default function ModernQRPage() {
     }
   }, [showScanner]);
 
-  const handleSubmit = async (e: any) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (
-      !formData.name ||
-      !formData.email ||
-      !formData.phone ||
-      !formData.address
-    ) {
-      setError("All fields are required");
+    if (!formData.name || !formData.email || !formData.phone || !formData.address) {
       return;
     }
     try {
       await new Promise((resolve) => setTimeout(resolve, 1000));
       setMessage("Form submitted successfully!");
-      setError("");
-    } catch {
-      setError("Failed to submit form");
+    } catch (error) {
+      console.error("Form submission error:", error);
     }
   };
 
@@ -81,9 +82,7 @@ export default function ModernQRPage() {
     <div className="px-4 sm:px-6 lg:px-8 py-12">
       <form onSubmit={handleSubmit} className="space-y-6">
         <div className="space-y-4">
-          <h3
-            className={`text-2xl font-semibold ${fonts.montserrat}  text-gray-700 mb-4`}
-          >
+          <h3 className={`text-2xl font-semibold ${fonts.montserrat} text-gray-700 mb-4`}>
             Business Information
           </h3>
           <div className="space-y-4">
@@ -92,9 +91,7 @@ export default function ModernQRPage() {
               <User className="absolute left-3 top-3 h-5 w-5 text-gray-400" />
               <Input
                 value={formData.name}
-                onChange={(e) =>
-                  setFormData({ ...formData, name: e.target.value })
-                }
+                onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                 placeholder="Full Name"
                 className={`pl-10 ${fonts.montserrat} h-12`}
               />
@@ -106,9 +103,7 @@ export default function ModernQRPage() {
               <Input
                 type="email"
                 value={formData.email}
-                onChange={(e) =>
-                  setFormData({ ...formData, email: e.target.value })
-                }
+                onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                 placeholder="Email Address"
                 className={`pl-10 ${fonts.montserrat} h-12`}
               />
@@ -120,9 +115,7 @@ export default function ModernQRPage() {
               <Input
                 type="tel"
                 value={formData.phone}
-                onChange={(e) =>
-                  setFormData({ ...formData, phone: e.target.value })
-                }
+                onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                 placeholder="Phone Number"
                 className={`pl-10 ${fonts.montserrat} h-12`}
               />
@@ -130,57 +123,43 @@ export default function ModernQRPage() {
 
             {/* Address Input */}
             <div className="relative">
-              <Building2
-                className={`absolute left-3 top-3 ${fonts.montserrat} h-5 w-5 text-gray-400`}
-              />
+              <Building2 className="absolute left-3 top-3 h-5 w-5 text-gray-400" />
               <Input
                 value={formData.address}
-                onChange={(e) =>
-                  setFormData({ ...formData, address: e.target.value })
-                }
+                onChange={(e) => setFormData({ ...formData, address: e.target.value })}
                 placeholder="Address"
-                className="pl-10 h-12"
+                className={`pl-10 ${fonts.montserrat} h-12`}
               />
             </div>
           </div>
         </div>
 
-        <div className="flex gap-4 w-fit">
+        <div className="flex gap-4">
           <Button
             type="button"
             variant="outline"
-            className={`flex-1 h-12 ${fonts.montserrat}`}
-            onClick={() => {
-              setShowScanner(!showScanner);
-            }}
+            className={`h-12 ${fonts.montserrat}`}
+            onClick={() => setShowScanner(!showScanner)}
           >
             <QrCode className="mr-2 h-5 w-5" />
             {showScanner ? "Close Scanner" : "Scan QR Code"}
           </Button>
-          <Button type="submit" className={`flex-1 ${fonts.montserrat} h-12`}>
+          <Button type="submit" className={`h-12 ${fonts.montserrat}`}>
             Submit
             <ArrowRight className="ml-2 h-5 w-5" />
           </Button>
         </div>
       </form>
 
-      {/* Messages */}
-      {error && (
-        <div className="mt-4 p-4 bg-red-50 rounded-lg flex items-center">
-          <X className="h-5 w-5 text-red-500 mr-2" />
-          <span className="text-red-600">{error}</span>
-        </div>
-      )}
       {message && (
-        <div className="mt-4 p-4 bg-green-50 rounded-lg flex items-center">
+        <div className="mt-4 p-4 bg-green-50 rounded-lg">
           <span className="text-green-600">{message}</span>
         </div>
       )}
 
-      {/* QR Scanner */}
       {showScanner && (
-        <div className="mt-6 p-4 border-2 border-dashed border-gray-200 rounded-lg">
-          <div id="qr-reader" />
+        <div className="mt-6">
+          <div id="qr-reader" className="rounded-lg overflow-hidden" />
         </div>
       )}
     </div>
