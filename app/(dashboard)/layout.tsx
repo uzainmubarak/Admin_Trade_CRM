@@ -21,6 +21,7 @@ import {
   LayoutDashboard,
   LogOut
 } from "lucide-react";
+import { fonts } from '@/components/ui/fonts';
 
 // Types and Interfaces
 interface SidebarItem {
@@ -75,7 +76,7 @@ const SidebarItem: React.FC<SidebarItemProps> = ({ item, isActive, isCollapsed }
         )} />
         
         {!isCollapsed && (
-          <span className="font-medium truncate">{item.name}</span>
+          <span className={`font-medium ${fonts.montserrat} truncate`}>{item.name}</span>
         )}
         
         {/* Tooltip for collapsed state */}
