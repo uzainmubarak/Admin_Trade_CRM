@@ -2,11 +2,9 @@
 
 import { DataTable } from "@/components/data-table";
 import { Button } from "@/components/ui/button";
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { PlusCircle } from "lucide-react";
 import { ColumnDef } from "@tanstack/react-table";
+import { PlusCircle } from "lucide-react";
+import Link from "next/link";
 
 type Buyer = {
   id: string;
@@ -41,42 +39,12 @@ export default function BuyersPage() {
     <div className="space-y-6">
       <div className="flex justify-between items-center">
         <h1 className="text-3xl font-bold ml-14 sm:ml-0">Buyers</h1>
-        <Dialog>
-          <DialogTrigger asChild>
-            <Button>
-              <PlusCircle className="mr-2 h-4 w-4" />
-              Add Buyer
-            </Button>
-          </DialogTrigger>
-          <DialogContent className="sm:max-w-[425px]">
-            <DialogHeader>
-              <DialogTitle>Add New Buyer</DialogTitle>
-            </DialogHeader>
-            <form className="grid gap-4 py-4">
-              <div className="grid gap-2">
-                <Label htmlFor="name">Name</Label>
-                <Input id="name" required />
-              </div>
-              <div className="grid gap-2">
-                <Label htmlFor="email">Email</Label>
-                <Input id="email" type="email" required />
-              </div>
-              <div className="grid gap-2">
-                <Label htmlFor="phone">Phone</Label>
-                <Input id="phone" type="tel" required />
-              </div>
-              <div className="grid gap-2">
-                <Label htmlFor="address">Address</Label>
-                <Input id="address" required />
-              </div>
-              <div className="grid gap-2">
-                <Label htmlFor="country">Country</Label>
-                <Input id="country" required />
-              </div>
-              <Button type="submit">Save Buyer</Button>
-            </form>
-          </DialogContent>
-        </Dialog>
+        <Link href="/dashboard/buyers/new">
+          <Button>
+            <PlusCircle className="mr-2 h-4 w-4" />
+            Add Buyer
+          </Button>
+        </Link>
       </div>
       <DataTable columns={columns} data={data} />
     </div>
