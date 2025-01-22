@@ -8,6 +8,7 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { PlusCircle } from "lucide-react";
 import { ColumnDef } from "@tanstack/react-table";
+import Link from "next/link";
 
 type Product = {
   id: string;
@@ -42,6 +43,12 @@ export default function ProductsPage() {
     <div className="space-y-6">
       <div className="flex justify-between items-center">
         <h1 className="sm:text-3xl text-2xl font-bold ml-14 lg:ml-0">Products</h1>
+        <Link href="/dashboard/products/new">
+          <Button>
+            <PlusCircle className="mr-2 h-4 w-4" />
+            Add Product
+          </Button>
+        </Link>
       </div>
       <DataTable columns={columns} data={data} />
     </div>
