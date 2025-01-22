@@ -1,16 +1,14 @@
-"use client";
 
 import { SellerForm } from "../components/SellerForm";
 
 
 
-type Props = {
-  params: { sellerId: string };
-};
+const SellerDetailClient = async ({ params }: {params: Promise<{sellerId: string}>}) => {
+ 
 
-const SellerDetailClient: React.FC<Props> = ({ params }) => {
-  const sellerId = params.sellerId as string;
-  const isNewSeller = sellerId === "new";
+    const sellerId = (await params).sellerId
+  
+    const isNewSeller = sellerId === "new";
 
   return (
     <div className="container mx-auto py-10">

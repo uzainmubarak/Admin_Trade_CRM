@@ -1,10 +1,11 @@
 "use client";
 
-import React, { useState } from 'react';
+import React, { useState, ComponentType } from 'react';
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { MdEventSeat } from "react-icons/md";
+import { IconType } from "react-icons";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
@@ -19,22 +20,26 @@ import {
   BoxesIcon,
   Menu,
   LayoutDashboard,
-  LogOut
+  LogOut,
+  LucideProps,
+  Armchair
 } from "lucide-react";
 import { fonts } from '@/components/ui/fonts';
 
 // Types and Interfaces
+type IconComponent = ComponentType<{ className?: string }>;
+
 interface SidebarItem {
   name: string;
   href: string;
-  icon: React.ComponentType<{ className?: string }>;
+  icon: IconComponent;
 }
 
 interface SidebarItemProps {
   item: SidebarItem;
   isActive: boolean;
   isCollapsed: boolean;
-  onClick?: () => void;  // Fixed capitalization
+  onClick?: () => void;
 }
 
 interface DashboardLayoutProps {
@@ -51,18 +56,17 @@ const SIDEBAR_ITEMS: SidebarItem[] = [
   { name: "Email", href: "/dashboard/email", icon: Mail },
   { name: "Campaigns", href: "/dashboard/campaigns", icon: Megaphone },
   { name: "Products", href: "/dashboard/products", icon: BoxesIcon },
-  { name: "Expo Events", href: "/dashboard/expo-events", icon: MdEventSeat },
+  { name: "Expo Events", href: "/dashboard/expo-events", icon: Armchair },
   { name: "Users", href: "/dashboard/users", icon: User },
   { name: "Sign out", href: "/login", icon: LogOut },
 ];
 
 // Component for individual sidebar items
-const SidebarItem: React.FC<SidebarItemProps> = ({ item, isActive, isCollapsed, onClick }) => {  // Fixed capitalization
+const SidebarItem: React.FC<SidebarItemProps> = ({ item, isActive, isCollapsed, onClick }) => {
   const Icon = item.icon;
   const isLastItem = item.name === "Sign out";
 
   const handleClick = (e: React.MouseEvent) => {
-    // Call the onClick handler if provided
     if (onClick) {
       onClick();
     }
@@ -119,8 +123,8 @@ const Sidebar: React.FC<{ isCollapsed: boolean; onToggleCollapse: () => void }> 
         <Link href={'/dashboard'}>
         {!isCollapsed && (
           <h2 className="text-xl font-bold text-white truncate">Admin Panel</h2>
-          )}
-          </Link>
+        )}
+        </Link>
         <Button
           variant="ghost"
           size="sm"
@@ -154,7 +158,7 @@ const MobileSidebar: React.FC = () => {
   const [isSheetOpen, setIsSheetOpen] = useState(false);
 
   const handleItemClick = () => {
-    setIsSheetOpen(false); // Close the sidebar when an item is clicked
+    setIsSheetOpen(false);
   };
 
   return (
@@ -179,7 +183,7 @@ const MobileSidebar: React.FC = () => {
                 item={item}
                 isActive={pathname === item.href}
                 isCollapsed={false}
-                onClick={handleItemClick}  // This will now work with the properly cased prop
+                onClick={handleItemClick}
               />
             ))}
           </nav>

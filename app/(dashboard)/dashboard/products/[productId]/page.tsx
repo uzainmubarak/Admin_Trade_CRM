@@ -1,16 +1,13 @@
-"use client"
+
 
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { ProductForm } from "../components/ProductForm"
 import { ProductSpecsForm } from "../components/ProductSpecsForm"
 import { DescriptionListForm } from "../components/DescriptionListForm"
 
-type Props = {
-  params: { productId: string }
-}
 
-const ProductDetail: React.FC<Props> = ({ params }) => {
-  const productId = params.productId as string
+const ProductDetail = async ({ params }: {params: Promise<{productId: string}>}) => {
+  const productId = (await params).productId
   const isNewProduct = productId === "new"
 
   return (

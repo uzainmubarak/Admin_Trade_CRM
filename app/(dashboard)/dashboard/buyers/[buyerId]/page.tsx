@@ -1,15 +1,8 @@
-"use client";
-
 import { BuyerForm } from "../components/BuyerForm";
 
 
-
-type Props = {
-  params: { buyerId: string };
-};
-
-const SellerDetailClient: React.FC<Props> = ({ params }) => {
-  const buyerId = params.buyerId as string;
+const SellerDetailClient = async ({ params }: {params: Promise<{buyerId: string}>}) => {
+  const buyerId = (await params).buyerId;
   const isNewBuyer = buyerId === "new";
 
   return (
