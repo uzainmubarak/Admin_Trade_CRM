@@ -25,6 +25,7 @@ const industries = [
 const formFields = [
   { id: "seller-name", label: "Name", type: "text", required: true },
   { id: "seller-email", label: "Email", type: "email", required: true },
+  { id: "seller-designation", label: "Designation", type: "text", required: true },
   {
     id: "seller-company-contact",
     label: "Company Contact",
